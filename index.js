@@ -13,8 +13,9 @@ app.get('/', (req,res) => {
     res.status(200).send('<h1>Welcome To our API jampot</h1>')
 })
 
-const { userRouter } = require('./router')
+const { userRouter, photoRouter } = require('./router')
 
 app.use('/user', userRouter)
+app.use('/photo', photoRouter)
 
 app.listen(port, () => console.log('API aktif di port ' + port))
