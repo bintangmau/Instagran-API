@@ -16,5 +16,9 @@ router.post('/getcommentmainpage', photoController.getCommentMainPage)
 router.post('/commentphoto', photoController.commentPhoto)
 router.get('/countlike/:idPhoto', photoController.countLike)
 router.get('/getmainfollowedonly/:idUser', photoController.getMainPageFollowedOnly)
+router.get('/getlistcomment/:idPhoto', photoController.getListComment)
+router.post('/searchphoto', photoController.searchPhoto)
+router.post('/unlikephoto', photoController.unLikePhoto)
+router.get('/getsliderphoto/:idUser', photoController.getSliderPhoto)
 
 module.exports = router

@@ -134,5 +134,15 @@ module.exports = {
             }
             res.status(200).send(results)
         })       
+    },
+    editUsername: (req, res) => {
+        var sql = `UPDATE users SET ? WHERE id = ${req.params.idUser}`
+
+        db.query(sql, req.body, (err, results) => {
+            if(err) {
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })
     }
 }

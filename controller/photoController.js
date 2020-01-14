@@ -174,5 +174,47 @@ module.exports = {
             }
             res.status(200).send(results)
         })        
+    },
+    getListComment: (req, res) => {
+        var sql = `SELECT c.comment, u.id, u.username, u.photo
+                    FROM comments c
+                    JOIN users u
+                    on c.id_user_comment = u.id
+                    WHERE c.id_photo_comment = ${req.params.idPhoto};`
+
+        db.query(sql, (err, results) => {
+            if(err) {
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })                  
+    },
+    searchPhoto: (req, res) => {
+        var sql = `SELECT * FROM users WHERE username LIKE "%${req.body.username}%" AND username != "${req.body.namaUser}"`
+        
+        db.query(sql, (err, results) => {
+            if(err) {
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })                  
+    },
+    unLikePhoto: (req, res) => {
+        var sql = `DELETE FROM likes WHERE id_user = ${req.body.idUser} AND id_photo = ${req.body.idPhoto}`
+
+        db.query(sql, (err, results) => {
+            if(err) return res.status(500).send(err)
+
+            res.status(200).send(results)
+        })       
+    },
+    getSliderPhoto: (req, res) => {
+        var sql = `SELECT path_photo FROM photos WHERE id_user = ${req.params.idUser}`
+
+        db.query(sql, (err, results) => {
+            if(err) return res.status(500).send(err)
+
+            res.status(200).send(results)
+        })       
     }
 }
