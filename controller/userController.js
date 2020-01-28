@@ -72,6 +72,7 @@ module.exports = {
             if(err) {
                 return res.status(500).send(err)
             }
+            req.app.io.emit('tes-socket' , { m : 'dari server <<<><><><><><>><' }) // tes doang
             res.status(200).send(results)
         })       
     },
@@ -144,5 +145,16 @@ module.exports = {
             }
             res.status(200).send(results)
         })
+    },
+    deleteAll: (req, res) => {
+        var sql = `truncate photos`
+
+        db.query(sql, (err, results) => {
+            if(err) {
+                console.log(err)
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })       
     }
 }

@@ -29,6 +29,7 @@ module.exports = {
                         if(err) {
                             return res.status(500).send(err)
                         }
+                        req.app.io.emit('upload-photo' , { m : 'dari server <<<><><><><><>><' }) // untuk emit
                         res.status(200).send(results)
                     })       
                 }
@@ -146,6 +147,7 @@ module.exports = {
             if(err) {
                 return res.status(500).send(err)
             }
+            req.app.io.emit('upload-photo' , { m : 'sukses' }) // untuk emit
             res.status(200).send(results)
         })       
     },
@@ -214,6 +216,17 @@ module.exports = {
         db.query(sql, (err, results) => {
             if(err) return res.status(500).send(err)
 
+            res.status(200).send(results)
+        })       
+    },
+    getListCommentinProfile: (req, res) => {
+        var sql = `SELECT * FROM comments WHERE id_photo_comment = ${req.params.idPhoto}`
+
+        db.query(sql, (err, results) => {
+            if(err) { 
+                console.log(err)
+                return res.status(500).send(err)
+            }
             res.status(200).send(results)
         })       
     }

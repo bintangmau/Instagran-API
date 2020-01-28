@@ -20,5 +20,6 @@ router.get('/getlistcomment/:idPhoto', photoController.getListComment)
 router.post('/searchphoto', photoController.searchPhoto)
 router.post('/unlikephoto', photoController.unLikePhoto)
 router.get('/getsliderphoto/:idUser', photoController.getSliderPhoto)
+router.get('/getlistcommentinprofile/:idPhoto', photoController.getListCommentinProfile)
 
 module.exports = router
