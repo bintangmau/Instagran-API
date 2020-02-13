@@ -16,5 +16,7 @@ router.post('/countfollowers', userController.countFollowers)
 router.post('/countfollowings', userController.countFollowings)
 router.post('/editusername/:idUser', userController.editUsername)
 router.post('/deleteall', userController.deleteAll)
+router.get('/getdatafollowers/:id', userController.getDataFollowers)
+router.get('/getdatafollowings/:id', userController.getDataFollowings)
 
 module.exports = router

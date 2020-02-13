@@ -26,5 +26,16 @@ module.exports = {
             }
             res.status(200).send(results)
         })       
+    },
+    notifLikePhoto: (req, res) => {
+        var sql = `INSERT INTO notification SET ?`
+
+        db.query(sql, req.body, (err, results) => {
+            if(err) {
+                return res.status(500).send(err)
+            }
+            req.app.io.emit('change-notif' , { m : 'sukses' }) // untuk kirim notif
+            res.status(200).send(results)
+        })       
     }
 }

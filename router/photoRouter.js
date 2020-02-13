@@ -21,5 +21,6 @@ router.post('/searchphoto', photoController.searchPhoto)
 router.post('/unlikephoto', photoController.unLikePhoto)
 router.get('/getsliderphoto/:idUser', photoController.getSliderPhoto)
 router.get('/getlistcommentinprofile/:idPhoto', photoController.getListCommentinProfile)
+router.get('/getdatalikers/:idPhoto', photoController.getDataLikers)
 
 module.exports = router

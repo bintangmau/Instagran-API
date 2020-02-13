@@ -229,5 +229,19 @@ module.exports = {
             }
             res.status(200).send(results)
         })       
+    },
+    getDataLikers: (req, res) => {
+        var sql = `SELECT u.id, u.username, u.photo FROM likes l
+                    JOIN users u
+                    ON l.id_user = u.id
+                    WHERE l.id_photo = ${req.params.idPhoto};`
+
+        db.query(sql, (err, results) => {
+            if(err) { 
+                console.log(err)
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })       
     }
 }

@@ -156,5 +156,33 @@ module.exports = {
             }
             res.status(200).send(results)
         })       
+    },
+    getDataFollowers: (req, res) => {
+        var sql = `SELECT u.id, u.username, u.photo FROM follows f
+                    JOIN users u
+                    ON f.id_user_follows = u.id
+                    WHERE f.id_followed_user = ${req.params.id};`
+
+        db.query(sql, (err, results) => {
+            if(err) {
+                console.log(err)
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })       
+    },
+    getDataFollowings: (req, res) => {
+        var sql = `SELECT u.id, u.username, u.photo FROM follows f
+                    JOIN users u
+                    ON f.id_followed_user = u.id
+                    WHERE f.id_user_follows = ${req.params.id};`
+
+        db.query(sql, (err, results) => {
+            if(err) {
+                console.log(err)
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })       
     }
 }
