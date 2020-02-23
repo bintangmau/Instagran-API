@@ -192,11 +192,7 @@ module.exports = {
         })                  
     },
     searchPhoto: (req, res) => {
-
-        var sql = `SELECT id_followed_user, username, u.id photo FROM follows f
-                    JOIN users u
-                    ON f.id_followed_user = u.id
-                    WHERE f.id_user_follows = ${req.params.idUser};`
+        var sql = `SELECT * FROM users WHERE username LIKE "%${req.body.username}%" AND username != "${req.body.namaUser}"`
         
         db.query(sql, (err, results) => {
             if(err) {

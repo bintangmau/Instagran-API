@@ -74,5 +74,19 @@ module.exports = {
             // console.log(req.params.idUser)
             res.status(200).send(results)
         })       
-    }
+    },
+    searchUsers: (req, res) => {
+
+        var sql = `SELECT id_followed_user, username, u.id photo FROM follows f
+                    JOIN users u
+                    ON f.id_followed_user = u.id
+                    WHERE u.username LIKE "${req.body.username}" AND u.username != "${req.body.namaUser}";`
+        
+        db.query(sql, (err, results) => {
+            if(err) {
+                return res.status(500).send(err)
+            }
+            res.status(200).send(results)
+        })                  
+    },
 }
