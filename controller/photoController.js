@@ -47,7 +47,7 @@ module.exports = {
         })       
     },
     getPhotoDetails: (req, res) => {
-        var sql = ` select * from photos p
+        var sql = ` select username, caption, path_photo from photos p
                     join users u
                     on p.id_user = u.id
                     where p.idphotos = ${req.params.idPhoto};`
@@ -192,7 +192,11 @@ module.exports = {
         })                  
     },
     searchPhoto: (req, res) => {
-        var sql = `SELECT * FROM users WHERE username LIKE "%${req.body.username}%" AND username != "${req.body.namaUser}"`
+
+        var sql = `SELECT id_followed_user, username, u.id photo FROM follows f
+                    JOIN users u
+                    ON f.id_followed_user = u.id
+                    WHERE f.id_user_follows = ${req.params.idUser};`
         
         db.query(sql, (err, results) => {
             if(err) {

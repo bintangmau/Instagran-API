@@ -90,6 +90,8 @@ module.exports = {
         var sql = `SELECT * FROM follows WHERE id_user_follows = ${req.body.idUserFollows} AND id_followed_user = ${req.body.idFollowedUser};`
 
         db.query(sql, (err, results) => {
+            console.log(req.body.idFollowedUser)
+            console.log(req.body.idUserFollows)
             if(err) {
                 return res.status(500).send(err)
             }
